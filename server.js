@@ -35,7 +35,7 @@ request.post(authOptions, function (error, response, body) {
     }
 });
 
-app.get('/getTrack/:id', function (rq, res) {
+app.get('/spotify/getTrack/:id', function (rq, res) {
     let requestionOptions = {
         url: `https://api.spotify.com/v1/tracks/${rq.params.id}`,
         headers: {'Authorization': `Bearer  ${ACCESS_TOKEN}`},
@@ -43,7 +43,46 @@ app.get('/getTrack/:id', function (rq, res) {
     };
     request.get(requestionOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            console.log(body);
+            res.send(body);
+        }
+    });
+});
+
+app.get('/spotify/getAlbum/:id', function (rq, res) {
+    let requestionOptions = {
+        url: `https://api.spotify.com/v1/albums/${rq.params.id}`,
+        headers: {'Authorization': `Bearer  ${ACCESS_TOKEN}`},
+        json: true
+    };
+    request.get(requestionOptions, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            res.send(body);
+        }
+    });
+});
+
+app.get('/spotify/getArtist/:id', function (rq, res) {
+    let requestionOptions = {
+        url: `https://api.spotify.com/v1/artists/${rq.params.id}`,
+        headers: {'Authorization': `Bearer  ${ACCESS_TOKEN}`},
+        json: true
+    };
+    request.get(requestionOptions, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            res.send(body);
+        }
+    });
+});
+
+app.get('/spotify/search', function (rq, res) {
+    let requestionOptions = {
+        url: `https://api.spotify.com/v1/search?q=${rq.query.q}&type=track&limit=1`,
+        headers: {'Authorization': `Bearer  ${ACCESS_TOKEN}`},
+        json: true
+    };
+    request.get(requestionOptions, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            res.send(body);
         }
     });
 });
