@@ -1,9 +1,10 @@
 {
-  "name": "ionic-heroku",
-  "description": "Ionic Node.js Heroku app",
+  "name": "ShareMusic-Web",
+  "description": "ShareMusic",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "~4.4.3"
+    "express": "~4.4.3",
+    "request": ""
   }
 }
